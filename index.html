@@ -1,0 +1,1748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mi chiamo… | Open to Critique…</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lora:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #faf7f2;
+    --warm-white: #f5f0e8;
+    --parchment: #ede8dc;
+    --ink: #1c1a17;
+    --ink-light: #3a3630;
+    --brown: #6b4f3a;
+    --brown-light: #8b6f5a;
+    --gold: #b8860b;
+    --gold-light: #d4a017;
+    --rust: #8b3a2a;
+    --sage: #5a6e5a;
+    --border: #d8d0c0;
+    --border-light: #ebe4d8;
+    --muted: #7a7060;
+    --shadow: rgba(28,26,23,0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Lora', Georgia, serif;
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--cream); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  /* ── TOP BAR ── */
+  .topbar {
+    background: var(--ink);
+    color: var(--warm-white);
+    text-align: center;
+    padding: 6px 20px;
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--cream);
+    border-bottom: 1px solid var(--border);
+    padding: 0 40px;
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    box-shadow: 0 2px 16px var(--shadow);
+  }
+
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+
+  .site-branding { display: flex; align-items: center; gap: 14px; }
+
+  .site-avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--brown), var(--gold));
+    display: flex; align-items: center; justify-content: center;
+    color: white;
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-style: italic;
+    font-weight: 600;
+    flex-shrink: 0;
+    border: 2px solid var(--border);
+  }
+
+  .site-title-wrap {}
+  .site-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-style: italic;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.1;
+  }
+  .site-tagline {
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .header-actions { display: flex; align-items: center; gap: 10px; }
+
+  .btn {
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 8px 20px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.25s;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--muted);
+  }
+  .btn:hover { border-color: var(--brown); color: var(--brown); background: rgba(107,79,58,0.05); }
+  .btn-primary { background: var(--ink); color: var(--warm-white); border-color: var(--ink); }
+  .btn-primary:hover { background: var(--brown); border-color: var(--brown); color: white; }
+  .btn-gold { background: var(--gold); color: white; border-color: var(--gold); }
+  .btn-gold:hover { background: var(--gold-light); border-color: var(--gold-light); }
+  .btn-danger { color: var(--rust); border-color: rgba(139,58,42,0.3); }
+  .btn-danger:hover { background: rgba(139,58,42,0.08); border-color: var(--rust); }
+  .btn-sm { padding: 6px 14px; font-size: 10px; }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--ink);
+    padding: 80px 40px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(180,134,30,0.15) 0%, transparent 70%);
+  }
+  .hero-cross {
+    font-size: 28px;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: block;
+    opacity: 0.8;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 6vw, 68px);
+    font-style: italic;
+    font-weight: 600;
+    color: var(--warm-white);
+    line-height: 1.1;
+    margin-bottom: 12px;
+    position: relative;
+  }
+  .hero-subtitle {
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+  }
+  .hero-desc {
+    font-family: 'Lora', serif;
+    font-size: 15px;
+    color: rgba(245,240,232,0.6);
+    max-width: 480px;
+    margin: 0 auto;
+    font-style: italic;
+  }
+
+  /* ── LAYOUT ── */
+  .main-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 40px;
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 60px;
+  }
+
+  /* ── POSTS ── */
+  .posts-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 40px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--ink);
+  }
+  .posts-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .posts-line { flex: 1; height: 1px; background: var(--border); }
+
+  /* POST CARD */
+  .post-card {
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    margin-bottom: 40px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px var(--shadow);
+    transition: transform 0.3s, box-shadow 0.3s;
+    animation: fadeUp 0.5s ease both;
+  }
+  .post-card:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(28,26,23,0.12); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .post-card-header { padding: 32px 36px 0; }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  .post-category {
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: white;
+    background: var(--brown);
+    padding: 3px 10px;
+    border-radius: 1px;
+  }
+  .post-date {
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.5px;
+  }
+  .post-author {
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    color: var(--brown);
+    font-weight: 500;
+  }
+
+  .post-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--ink);
+    margin-bottom: 18px;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  .post-title:hover { color: var(--brown); }
+
+  .post-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag {
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: var(--brown-light);
+    background: rgba(107,79,58,0.08);
+    padding: 3px 10px;
+    border-radius: 20px;
+    border: 1px solid rgba(107,79,58,0.15);
+  }
+
+  .post-body { padding: 0 36px; }
+
+  .post-excerpt {
+    font-size: 15px;
+    color: var(--ink-light);
+    line-height: 1.8;
+    margin-bottom: 20px;
+  }
+
+  .post-full-text {
+    font-size: 15px;
+    color: var(--ink-light);
+    line-height: 1.85;
+    display: none;
+  }
+  .post-full-text p { margin-bottom: 18px; }
+  .post-full-text.open { display: block; }
+
+  .read-more-btn {
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--brown);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.2s;
+    margin-bottom: 24px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .read-more-btn:hover { color: var(--gold); }
+  .read-more-btn .arrow { transition: transform 0.2s; }
+  .read-more-btn.open .arrow { transform: rotate(90deg); }
+
+  /* POST FOOTER */
+  .post-footer {
+    padding: 20px 36px;
+    border-top: 1px solid var(--border-light);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    background: rgba(250,247,242,0.5);
+  }
+
+  .reaction-bar { display: flex; align-items: center; gap: 8px; }
+
+  .reaction-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 7px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: white;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--muted);
+  }
+  .reaction-btn:hover { border-color: var(--brown-light); color: var(--brown); }
+  .reaction-btn.liked { background: rgba(90,110,90,0.1); border-color: var(--sage); color: var(--sage); }
+  .reaction-btn.disliked { background: rgba(139,58,42,0.08); border-color: var(--rust); color: var(--rust); }
+  .reaction-btn .emoji { font-size: 14px; }
+
+  .comment-toggle-btn {
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: none;
+    border: 1px solid var(--border);
+    padding: 7px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .comment-toggle-btn:hover { border-color: var(--brown); color: var(--brown); }
+
+  /* COMMENTS */
+  .comments-section {
+    padding: 0 36px 32px;
+    display: none;
+    border-top: 1px solid var(--border-light);
+    animation: fadeUp 0.3s ease both;
+  }
+  .comments-section.open { display: block; }
+
+  .comments-title {
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 20px 0 16px;
+    border-bottom: 1px solid var(--border-light);
+    margin-bottom: 20px;
+  }
+
+  .comment-item {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .comment-item:last-of-type { border-bottom: none; }
+
+  .comment-avatar {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--parchment), var(--border));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--brown);
+    flex-shrink: 0;
+  }
+
+  .comment-content { flex: 1; }
+  .comment-header { display: flex; align-items: baseline; gap: 10px; margin-bottom: 4px; }
+  .comment-name { font-family: 'Jost', sans-serif; font-size: 12px; font-weight: 600; color: var(--ink); }
+  .comment-date-sm { font-family: 'Jost', sans-serif; font-size: 10px; color: var(--muted); }
+  .comment-text { font-size: 14px; color: var(--ink-light); line-height: 1.65; }
+
+  /* COMMENT FORM */
+  .comment-form { margin-top: 20px; }
+  .comment-form-title {
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+  .form-input, .form-textarea {
+    width: 100%;
+    font-family: 'Lora', serif;
+    font-size: 14px;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    background: var(--cream);
+    color: var(--ink);
+    transition: border-color 0.2s;
+    outline: none;
+    resize: vertical;
+  }
+  .form-input:focus, .form-textarea:focus { border-color: var(--brown); }
+  .form-textarea { height: 80px; margin-bottom: 10px; }
+
+  /* ── SIDEBAR ── */
+  .sidebar { position: relative; }
+
+  .widget {
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    padding: 28px 24px;
+    margin-bottom: 28px;
+    box-shadow: 0 2px 8px var(--shadow);
+  }
+
+  .widget-title {
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .about-avatar {
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--brown) 0%, var(--gold) 100%);
+    margin: 0 auto 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-style: italic;
+    color: white;
+    font-weight: 600;
+  }
+  .about-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-style: italic;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 6px;
+    color: var(--ink);
+  }
+  .about-bio {
+    font-size: 13px;
+    color: var(--muted);
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  .recent-post-item {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 14px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border-light);
+    cursor: pointer;
+  }
+  .recent-post-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .recent-post-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--parchment);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 24px;
+  }
+  .recent-post-info {}
+  .recent-post-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.35;
+    margin-bottom: 3px;
+    transition: color 0.2s;
+  }
+  .recent-post-item:hover .recent-post-title { color: var(--brown); }
+  .recent-post-date { font-family: 'Jost', sans-serif; font-size: 10px; color: var(--muted); }
+
+  .tags-cloud { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag-cloud-item {
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.5px;
+    color: var(--brown);
+    border: 1px solid rgba(107,79,58,0.25);
+    padding: 4px 10px;
+    border-radius: 20px;
+    transition: all 0.2s;
+    cursor: default;
+  }
+  .tag-cloud-item:hover { background: var(--brown); color: white; }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 8px 0 28px;
+    color: var(--muted);
+    font-size: 16px;
+  }
+  .divider::before, .divider::after {
+    content: ''; flex: 1; height: 1px; background: var(--border-light);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    color: rgba(245,240,232,0.5);
+    text-align: center;
+    padding: 40px 20px;
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    letter-spacing: 1px;
+  }
+  footer a { color: var(--gold); text-decoration: none; }
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-style: italic;
+    color: var(--warm-white);
+    margin-bottom: 8px;
+  }
+
+  /* ── ADMIN MODAL ── */
+  .modal-overlay {
+    position: fixed; inset: 0;
+    background: rgba(28,26,23,0.85);
+    backdrop-filter: blur(6px);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modal-overlay.open { display: flex; }
+
+  .modal {
+    background: white;
+    border-radius: 6px;
+    width: 100%;
+    max-width: 540px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 24px 80px rgba(28,26,23,0.4);
+    animation: modalIn 0.3s ease both;
+  }
+  @keyframes modalIn {
+    from { opacity: 0; transform: scale(0.95) translateY(10px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  .modal-header {
+    padding: 28px 32px 20px;
+    border-bottom: 1px solid var(--border-light);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .modal-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .modal-close {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: var(--muted);
+    transition: all 0.2s;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .modal-close:hover { background: var(--cream); color: var(--ink); }
+
+  .modal-body { padding: 24px 32px 32px; }
+
+  .form-group { margin-bottom: 18px; }
+  .form-label {
+    display: block;
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .form-control {
+    width: 100%;
+    font-family: 'Lora', serif;
+    font-size: 15px;
+    padding: 11px 14px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    background: var(--cream);
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-control:focus { border-color: var(--brown); }
+  textarea.form-control { min-height: 200px; resize: vertical; line-height: 1.7; }
+
+  .modal-error {
+    background: rgba(139,58,42,0.08);
+    border: 1px solid rgba(139,58,42,0.3);
+    color: var(--rust);
+    padding: 10px 14px;
+    border-radius: 2px;
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    margin-bottom: 16px;
+    display: none;
+  }
+  .modal-error.show { display: block; }
+
+  /* ── ADMIN DASHBOARD ── */
+  #admin-dashboard {
+    position: fixed; inset: 0;
+    background: var(--cream);
+    z-index: 500;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  #admin-dashboard.open { display: flex; }
+
+  .admin-header {
+    background: var(--ink);
+    color: var(--warm-white);
+    padding: 0 40px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+  }
+  .admin-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--gold);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .admin-brand span {
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.4);
+    font-style: normal;
+    margin-left: 8px;
+  }
+
+  .admin-body { display: flex; flex: 1; overflow: hidden; }
+
+  .admin-sidebar {
+    width: 240px;
+    background: #1c1a17;
+    flex-shrink: 0;
+    padding: 24px 0;
+    overflow-y: auto;
+  }
+
+  .admin-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 24px;
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: rgba(245,240,232,0.5);
+    cursor: pointer;
+    transition: all 0.2s;
+    text-transform: uppercase;
+  }
+  .admin-nav-item:hover, .admin-nav-item.active {
+    background: rgba(201,169,110,0.1);
+    color: var(--gold);
+  }
+  .admin-nav-item .icon { font-size: 16px; }
+
+  .admin-content { flex: 1; overflow-y: auto; padding: 40px; }
+
+  .admin-page-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .admin-page-subtitle {
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    margin-bottom: 32px;
+  }
+
+  .admin-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .stat-card {
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    padding: 20px;
+    box-shadow: 0 2px 8px var(--shadow);
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .admin-table-wrap {
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px var(--shadow);
+  }
+  .admin-table-wrap table { min-width: 520px; }
+  .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .admin-table-header {
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--border-light);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .admin-table-title {
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  table { width: 100%; border-collapse: collapse; }
+  th {
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 12px 20px;
+    text-align: left;
+    background: var(--cream);
+    border-bottom: 1px solid var(--border-light);
+  }
+  td {
+    padding: 14px 20px;
+    font-size: 13px;
+    color: var(--ink-light);
+    border-bottom: 1px solid var(--border-light);
+    vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(250,247,242,0.8); }
+  .td-title { font-weight: 500; color: var(--ink); max-width: 280px; }
+  .td-title-text { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 280px; display: block; }
+
+  /* TOAST */
+  .toast {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    background: var(--ink);
+    color: var(--warm-white);
+    padding: 14px 20px;
+    border-radius: 4px;
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    z-index: 9999;
+    transform: translateY(80px);
+    opacity: 0;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 8px 32px rgba(28,26,23,0.4);
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+  .toast-icon { font-size: 16px; }
+
+  .empty-state {
+    text-align: center;
+    padding: 80px 40px;
+    color: var(--muted);
+  }
+  .empty-state-icon { font-size: 40px; margin-bottom: 16px; opacity: 0.4; }
+  .empty-state-text { font-family: 'Playfair Display', serif; font-style: italic; font-size: 18px; }
+
+  /* ══════════════════════════════════════
+     RESPONSIVE — TABLET (max 1024px)
+  ══════════════════════════════════════ */
+  @media (max-width: 1024px) {
+    .main-wrap {
+      grid-template-columns: 1fr 260px;
+      gap: 40px;
+      padding: 48px 28px;
+    }
+    .admin-stats { grid-template-columns: repeat(2, 1fr); }
+    .admin-content { padding: 28px 24px; }
+    .admin-sidebar { width: 200px; }
+    .admin-nav-item { padding: 11px 16px; font-size: 11px; }
+  }
+
+  /* ══════════════════════════════════════
+     RESPONSIVE — MOBILE (max 768px)
+  ══════════════════════════════════════ */
+  @media (max-width: 768px) {
+    /* Layout */
+    .main-wrap {
+      grid-template-columns: 1fr;
+      gap: 0;
+      padding: 28px 16px 48px;
+    }
+    .sidebar { display: none; }
+
+    /* Topbar */
+    .topbar { font-size: 9px; letter-spacing: 1px; padding: 6px 12px; }
+
+    /* Header */
+    header { padding: 0 16px; }
+    .header-inner { height: 60px; }
+    .site-name { font-size: 18px; }
+    .site-tagline { font-size: 9px; letter-spacing: 1.5px; }
+    .site-avatar { width: 36px; height: 36px; font-size: 15px; }
+
+    /* Hero */
+    .hero { padding: 52px 20px 40px; }
+    .hero-title { font-size: clamp(32px, 9vw, 52px); }
+    .hero-subtitle { font-size: 10px; letter-spacing: 3px; }
+    .hero-desc { font-size: 13px; }
+    .hero-cross { font-size: 22px; margin-bottom: 14px; }
+
+    /* Posts */
+    .posts-header { margin-bottom: 24px; }
+    .post-card { margin-bottom: 24px; border-radius: 6px; }
+    .post-card:hover { transform: none; }
+    .post-card-header { padding: 20px 18px 0; }
+    .post-body { padding: 0 18px; }
+    .post-footer {
+      padding: 14px 18px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .reaction-bar { width: 100%; justify-content: flex-start; }
+    .reaction-btn { flex: 1; justify-content: center; font-size: 13px; }
+    .comment-toggle-btn { width: 100%; justify-content: center; }
+    .comments-section { padding: 0 18px 24px; }
+    .post-title { font-size: 20px; margin-bottom: 12px; }
+    .post-excerpt { font-size: 14px; }
+    .post-full-text { font-size: 14px; }
+
+    /* Comment form */
+    .form-row { grid-template-columns: 1fr; gap: 8px; }
+    .form-input, .form-textarea { font-size: 16px; } /* prevent iOS zoom */
+    .form-control { font-size: 16px; } /* prevent iOS zoom */
+
+    /* Modal */
+    .modal { border-radius: 12px 12px 0 0; max-height: 95vh; }
+    .modal-overlay { align-items: flex-end; padding: 0; }
+    .modal-header { padding: 20px 20px 16px; }
+    .modal-body { padding: 16px 20px 32px; }
+
+    /* Toast */
+    .toast { bottom: 16px; right: 16px; left: 16px; font-size: 13px; }
+
+    /* Admin — mobile nav bar at bottom */
+    #admin-dashboard .admin-body { flex-direction: column-reverse; }
+    .admin-sidebar {
+      width: 100%;
+      padding: 0;
+      display: flex;
+      flex-direction: row;
+      overflow-x: auto;
+      overflow-y: hidden;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      flex-shrink: 0;
+      height: 58px;
+      -webkit-overflow-scrolling: touch;
+    }
+    .admin-nav-item {
+      flex-direction: column;
+      gap: 3px;
+      padding: 8px 16px;
+      font-size: 9px;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      justify-content: center;
+      min-width: 72px;
+    }
+    .admin-nav-item .icon { font-size: 18px; }
+    .admin-content { padding: 20px 16px; overflow-y: auto; }
+    .admin-header { padding: 0 16px; height: 52px; }
+    .admin-brand span { display: none; }
+    .admin-page-title { font-size: 22px; }
+    .admin-stats { grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 24px; }
+    .stat-num { font-size: 28px; }
+    .stat-card { padding: 14px; }
+    table { font-size: 12px; }
+    th, td { padding: 10px 12px; }
+    .td-title-text { max-width: 140px; }
+
+    /* Admin form panel */
+    #admin-content [style*="padding:36px"] { padding: 20px !important; }
+  }
+
+  /* ══════════════════════════════════════
+     RESPONSIVE — SMALL MOBILE (max 480px)
+  ══════════════════════════════════════ */
+  @media (max-width: 480px) {
+    .topbar { display: none; }
+    .hero { padding: 44px 16px 32px; }
+    .hero-subtitle { letter-spacing: 2px; }
+    .post-card-header { padding: 16px 14px 0; }
+    .post-body { padding: 0 14px; }
+    .post-footer { padding: 12px 14px; }
+    .comments-section { padding: 0 14px 20px; }
+    .post-title { font-size: 18px; }
+    .post-meta { gap: 8px; }
+    .admin-stats { grid-template-columns: 1fr 1fr; }
+    .reaction-btn { padding: 8px 10px; font-size: 12px; }
+    .btn { padding: 9px 16px; }
+    .modal-header { padding: 16px 16px 12px; }
+    .modal-body { padding: 14px 16px 28px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOAST -->
+<div class="toast" id="toast"><span class="toast-icon" id="toast-icon">✓</span><span id="toast-msg"></span></div>
+
+<!-- ── FRONT END ── -->
+<div id="frontend">
+
+  <div class="topbar">✦ A Journal of Faith &amp; Reflection ✦</div>
+
+  <header>
+    <div class="header-inner">
+      <div class="site-branding">
+        <div class="site-avatar">M</div>
+        <div class="site-title-wrap">
+          <div class="site-name">Mi chiamo…</div>
+          <div class="site-tagline">Open to Critique…</div>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button class="btn btn-sm" onclick="openLogin()">⚙ Admin</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="hero">
+    <span class="hero-cross">✝</span>
+    <h1 class="hero-title">Mi chiamo…</h1>
+    <div class="hero-subtitle">Open to Critique</div>
+    <p class="hero-desc">A personal journal of faith, scripture, and spiritual reflection by Collins Mambo</p>
+  </div>
+
+  <div class="main-wrap">
+    <main>
+      <div class="posts-header">
+        <div class="posts-label">Latest Reflections</div>
+        <div class="posts-line"></div>
+      </div>
+      <div id="posts-container"></div>
+      <div id="empty-posts" class="empty-state" style="display:none">
+        <div class="empty-state-icon">📖</div>
+        <div class="empty-state-text">No posts yet. The author is reflecting…</div>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="widget">
+        <div class="widget-title">About the Author</div>
+        <div class="about-avatar">C</div>
+        <div class="about-name">Collins Mambo</div>
+        <p class="about-bio">Priest and theologian sharing homilies, scripture reflections, and spiritual commentary. Open to critique and dialogue.</p>
+      </div>
+
+      <div class="widget">
+        <div class="widget-title">Recent Posts</div>
+        <div id="recent-posts-sidebar"></div>
+      </div>
+
+      <div class="widget">
+        <div class="widget-title">Tags</div>
+        <div class="tags-cloud" id="tags-cloud"></div>
+      </div>
+    </aside>
+  </div>
+
+  <footer>
+    <div class="footer-brand">Mi chiamo…</div>
+    <p>Open to Critique · A Journal of Faith &amp; Reflection</p>
+    <p style="margin-top:8px">Built with ♡ · <a href="#">WordPress Original</a></p>
+  </footer>
+
+</div><!-- /frontend -->
+
+<!-- ── LOGIN MODAL ── -->
+<div class="modal-overlay" id="login-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Admin Login</div>
+      <button class="modal-close" onclick="closeLogin()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-error" id="login-error">Incorrect username or password. Please try again.</div>
+      <div class="form-group">
+        <label class="form-label">Username</label>
+        <input type="text" class="form-control" id="login-user" placeholder="collinsmambo" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input type="password" class="form-control" id="login-pass" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()" />
+      </div>
+      <button class="btn btn-primary" style="width:100%;padding:12px" onclick="doLogin()">Sign In to Dashboard</button>
+      <p style="text-align:center;margin-top:14px;font-family:'Jost',sans-serif;font-size:11px;color:var(--muted)">
+        Default: <strong>admin</strong> / <strong>mambo2024</strong>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ── NEW/EDIT POST MODAL ── -->
+<div class="modal-overlay" id="post-modal">
+  <div class="modal" style="max-width:680px">
+    <div class="modal-header">
+      <div class="modal-title" id="post-modal-title">New Post</div>
+      <button class="modal-close" onclick="closePostModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label">Post Title *</label>
+        <input type="text" class="form-control" id="pm-title" placeholder="Enter a reflective title…" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Tags (comma separated)</label>
+        <input type="text" class="form-control" id="pm-tags" placeholder="faith, jesus, bible, easter…" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Content *</label>
+        <textarea class="form-control" id="pm-content" placeholder="Write your reflection here…" style="min-height:280px"></textarea>
+      </div>
+      <div style="display:flex;gap:10px;justify-content:flex-end">
+        <button class="btn" onclick="closePostModal()">Cancel</button>
+        <button class="btn btn-primary" onclick="savePost()">Publish Post</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── ADMIN DASHBOARD ── -->
+<div id="admin-dashboard">
+  <div class="admin-header">
+    <div class="admin-brand">
+      Mi chiamo… <span>— Admin Dashboard</span>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center">
+      <span style="font-family:'Jost',sans-serif;font-size:11px;color:rgba(245,240,232,0.4);letter-spacing:1px">collinsmambo</span>
+      <button class="btn btn-sm" onclick="adminLogout()" style="border-color:rgba(255,255,255,0.2);color:rgba(255,255,255,0.5)">Logout</button>
+    </div>
+  </div>
+  <div class="admin-body">
+    <div class="admin-sidebar">
+      <div class="admin-nav-item active" onclick="adminTab('dashboard',this)"><span class="icon">🏠</span>Dashboard</div>
+      <div class="admin-nav-item" onclick="adminTab('posts',this)"><span class="icon">📝</span>All Posts</div>
+      <div class="admin-nav-item" onclick="adminTab('new-post',this)"><span class="icon">✏️</span>New Post</div>
+      <div class="admin-nav-item" onclick="adminTab('settings',this)"><span class="icon">⚙️</span>Settings</div>
+    </div>
+    <div class="admin-content" id="admin-content"></div>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════
+//  DATA & STORAGE
+// ═══════════════════════════════════════
+const ADMIN_USER = 'admin';
+const ADMIN_PASS_KEY = 'cm_admin_pass';
+const POSTS_KEY = 'cm_posts';
+const REACTIONS_KEY = 'cm_reactions';
+const COMMENTS_KEY = 'cm_comments';
+
+function getAdminPass() {
+  return localStorage.getItem(ADMIN_PASS_KEY) || 'mambo2024';
+}
+
+function getPosts() {
+  const raw = localStorage.getItem(POSTS_KEY);
+  if (raw) return JSON.parse(raw);
+  // Seed with real posts
+  const seed = [
+    {
+      id: 'p1',
+      title: 'Easter Sunday 2026: Those raised with Jesus to Think and Seek what is Above',
+      tags: ['bible','easter','faith','jesus','resurrection'],
+      date: '2026-04-06',
+      content: `Today, we celebrate the foundation of our faith. Without the resurrection, Christianity would have nothing to hold it together. The Church wouldn't have been established.\n\nFor us Christians, the resurrection of our Lord is an undeniable reality. One that took place in space and time. We can trace the location, the year, month, day and the hour when Mary and the other women went to the tomb of Jesus. In fact, Peter in the first reading presents himself as one of the eye witnesses of the resurrection, 'This man God raised on the third day and granted that he be visible not to all the people, but to us, the witnesses chosen by God in advance, who ate and drank with him after he rose from the dead' (Acts 10:40-41).\n\nThe impact the resurrection had on the followers of Jesus is an indisputable testimony for the resurrection. We shall focus on two characters in the gospel who were drastically transformed by the resurrection; they were never the same again.\n\nFirst of all, Mary Magdalene, a woman who had an iffy and mundane past, on the first day of the week, she thinks and searches for the Lord. Nothing else preoccupied her mind but the Lord. As a result she is rewarded as the first witness of the resurrection, the first woman apostle, and consequently, the apostle to the apostle.\n\nThe second character is the Apostle Peter. The man who cowardly denied Jesus three times. Today in the second reading, Peter is boldly preaching the risen Christ before a Roman Centurion, Cornelius. Thereby, Peter was launching the mission to the Gentile world.\n\nThese two, Peter and Mary Magdalene were truly raised with Christ; they no longer sought lowly mundane things. After the resurrection they were thinking and seeking what is above and godly.\n\nThis is the invitation Paul is presenting to us in the letter to the Colossians. It is not enough to claim that Christ is risen without having personally experienced a radical change in our thinking and in the goals we pursue.\n\nHave a Merry Easter!`
+    },
+    {
+      id: 'p2',
+      title: '5th Sunday of Lent 2026 Year A: Everything Happens for God\'s Glory',
+      tags: ['bible','christianity','faith','god','jesus'],
+      date: '2026-04-06',
+      content: `The rising of Lazarus from death is the seventh and final sign in the Gospel of Signs. It marks the end of Jesus' public ministry and the beginning of Jesus' passion, death and resurrection. In fact by restoring Lazarus to life, Jesus signed His own death warrant.\n\nWhile the other signs displayed Jesus' power over nature and ailments, this final sign manifested Jesus' power over humanity's greatest and final enemy, death.\n\nIn the gospel, Jesus purposefully delays for two days to respond to the report of his friend having been taken ill. He again providentially learns of Lazarus' demise and takes time before getting there. It is four days after his burial that Jesus arrives and the body is already decomposing. Reason? For the glory of God to be manifested and for the people to believe the Son whom the Father sent.\n\nTo what shall we compare the dry bones in the grave? We shall compare it to each individual person. Many people, though walking, are dead. Dead spiritually, morally, emotionally, financially… One could be in the grave of drug abuse, bad company, addictions, laziness, bitterness, ignorance…\n\nTo what shall we compare the dry bones in the grave? We shall compare them to families. Many families are defunct due to conflicts, unforgiveness, addictions, gambling, poverty, unfaithfulness.\n\nIn all these lifeless situations, we should not lose hope. We should unceasingly seek God's intervention. If we identify every aspect of our life that is dead and allow Christ to breathe his Spirit into us, we shall be a restored Israel.`
+    },
+    {
+      id: 'p3',
+      title: 'HUMILITY HUMANISES (22nd Sunday)',
+      tags: ['bible','faith','god','humility','jesus'],
+      date: '2025-09-08',
+      content: `Our theme consists of two simple words. It is important we investigate them etymologically.\n\nHumanise is a verb from the noun human which is from the Latin word homo which means man. Subsequently, homo is from another Latin word humus which means earth, ground or dust.\n\nThe first human being was created from dust (Genesis 2:7) and was named Adam. The name Adam is from the Hebrew meaning soil, land or ground.\n\nThe second term humility has its origin in the same Latin word humus. Therefore one who is humble is lowly, is at the ground level, level of humus.\n\nSince humans are from the ground, they are authentically human when they embrace humility. Therefore humility makes us human; humility humanises. Without humility we forfeit our humanity.\n\nFor St. Augustine, a humble person is one who has done truthful self-assessment and acceptance of his or her place in God's plan.\n\nIn the gospel Jesus aims a hefty jab at the mundane honour based on status and reciprocity. Jesus reminds us that one who exalts himself is humiliated. But the one who is lowly, humble, is exalted.\n\nA statue on the ground has no possibility of dropping. Lift it a metre high and it shall break into several pieces. Ten metres higher and it shall be shattered. Therefore remain humble, remain on the ground lest you drop.\n\nRemember to show the humility of grass, which yields without needing to know whose foot is stepping on it. The path of humility takes you everywhere, but above all to heaven.`
+    },
+    {
+      id: 'p4',
+      title: 'NATIVITY OF THE LORD: OUT OF LOVE AND MERCY GOD TAKES THE INITIATIVE TO SAVE HUMANITY',
+      tags: ['bible','christmas','faith','god','jesus'],
+      date: '2025-12-25',
+      content: `At the one and only wedding reception I have attended, the MC asked one lady to call her husband who wasn't in attendance and tell him 'I love you' on loud speaker. The response came from the other end of the call 'I don't have money' and he hung up.\n\nToday the world has been commercialised: we don't believe that someone can say something positive about us or do something good to us without a price tag. Here in Kenya we believe 'Hakuna cha bure.'\n\nWhile humanity has placed a price tag on almost everything, God on the other hand has today acted out of love and mercy for humanity.\n\nIn the second reading, Paul reminds us that the salvation we receive through Jesus Christ is gracious; that is, unmerited, it is a fruit of God's love and mercy. It is not a fruit of our righteousness. Neither have we paid or can pay for it.\n\nWhen the promise of the coming Messiah is fulfilled in the gospel, the Good News is first revealed to the socially marginalized, shepherds. In their humility they promptly acted with faith and obedience.\n\nWhile the world cannot offer solutions without a price tag, the birth of the Saviour confirms God's love and mercy for humanity.\n\nA king is born of a humble carpenter and village girl in a manger, and whose birth is first revealed to shepherds — then radically changes their social status.\n\nOn Christmas day we celebrate genuine love, God's love for humanity. He loves us as His treasured possession.`
+    },
+    {
+      id: 'p5',
+      title: '16th Sunday Ordinary Time Year C: Listening Informs Action',
+      tags: ['bible','faith','god','jesus'],
+      date: '2025-08-05',
+      content: `Last Friday, we attended a priest's thanksgiving mass at Bwaliro Parish. I noticed a 'local engineer' toiling to get electricity to the venue. The cable consisted a series of wires joined together — basically, the wires were too thin, and the distance was too long. The local engineer acted uninformed.\n\nIn the gospel, we are presented with two characters: Mary the listener and Martha the pragmatist. Jesus did not say that Martha's take was evil, but that Mary took the better portion. Mary's was better since every action should be preceded by listening.\n\nLets say you visit a physician. Before listening to you the physician grabs a syringe to jab you. Would you allow the physician to attend to you? Proper service follows listening; learn before you act.\n\nOur generation is intoxicated with a cocktail of ignorance and pride. A know-it-all generation. Listening to no one. This is evident in the loss of the culture of reading.\n\nAbraham was mature in faith since he was a listener and believer of the Word of God. As a result he served his divine guests well.\n\nTherefore, mature Christians embrace both Mary and Martha. The listening informs the service they render. Act only after you have listened and reflected. Acting without listening is disastrous.`
+    },
+    {
+      id: 'p6',
+      title: 'Divine Mercy Sunday (Year C 2025)',
+      tags: ['faith','god','jesus','mercy'],
+      date: '2025-04-27',
+      content: `During this season of Easter, we celebrate Jesus' ultimate act of love; an excruciating death on the cross for our redemption. 'No one can have greater love than to lay down his life for his friends' (John 15:13).\n\nGod loves us so much, not that we are so good, or that we merit the love, but out of his mercy. He is so merciful that he doesn't wish to lose even one of us.\n\nToday, God manifests his mercy in two ways. First, through the institution of the sacrament of penance. With the sacrament of penance, the fountain of God's mercy is inexhaustible.\n\nSecondly, the risen Lord reaches out to his disciples who out of fear had locked themselves in a room. The reassurance he gives them is the gift of peace they lacked most.\n\nAfter experiencing the mercy of God in forgiveness and acts of mercy, Christians too are commissioned vessels of God's mercy. One who has the Spirit of God forgives those who have hurt him or her.\n\nWe are in a world stuffed with violence and cruelty. But on this day we are celebrating Divine Mercy. Is there someone you have not forgiven? Have you ever engaged in acts of violence?\n\nBlessed Divine Mercy Sunday!`
+    },
+  ];
+  localStorage.setItem(POSTS_KEY, JSON.stringify(seed));
+  return seed;
+}
+
+function savePosts(posts) {
+  localStorage.setItem(POSTS_KEY, JSON.stringify(posts));
+}
+
+function getReactions() {
+  return JSON.parse(localStorage.getItem(REACTIONS_KEY) || '{}');
+}
+function saveReactions(r) { localStorage.setItem(REACTIONS_KEY, JSON.stringify(r)); }
+
+function getComments() {
+  return JSON.parse(localStorage.getItem(COMMENTS_KEY) || '{}');
+}
+function saveComments(c) { localStorage.setItem(COMMENTS_KEY, JSON.stringify(c)); }
+
+// ═══════════════════════════════════════
+//  UTILS
+// ═══════════════════════════════════════
+function fmtDate(str) {
+  const d = new Date(str);
+  return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+
+function genId() { return 'p' + Date.now() + Math.random().toString(36).slice(2,6); }
+
+function showToast(msg, icon='✓') {
+  const t = document.getElementById('toast');
+  document.getElementById('toast-msg').textContent = msg;
+  document.getElementById('toast-icon').textContent = icon;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+function excerpt(text, len=280) {
+  return text.length > len ? text.slice(0, len).trim() + '…' : text;
+}
+
+// ═══════════════════════════════════════
+//  RENDER FRONTEND
+// ═══════════════════════════════════════
+function renderFrontend() {
+  const posts = getPosts();
+  const reactions = getReactions();
+  const comments = getComments();
+  const container = document.getElementById('posts-container');
+  const empty = document.getElementById('empty-posts');
+
+  if (!posts.length) {
+    container.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+
+  const sorted = [...posts].sort((a,b) => new Date(b.date) - new Date(a.date));
+  container.innerHTML = sorted.map((p, i) => {
+    const r = reactions[p.id] || { likes: 0, dislikes: 0 };
+    const cmts = comments[p.id] || [];
+    const userR = getUserReaction(p.id);
+    const paras = p.content.split('\n\n').filter(Boolean);
+    const firstPara = paras[0] || '';
+    const rest = paras.slice(1);
+    const hasMore = rest.length > 0;
+
+    return `
+    <div class="post-card" style="animation-delay:${i*0.08}s" id="card-${p.id}">
+      <div class="post-card-header">
+        <div class="post-meta">
+          <span class="post-category">Uncategorized</span>
+          <span class="post-date">${fmtDate(p.date)}</span>
+          <span class="post-author">collinsmambo</span>
+        </div>
+        <h2 class="post-title">${escHtml(p.title)}</h2>
+        ${p.tags && p.tags.length ? `<div class="post-tags">${p.tags.map(t=>`<span class="tag">${escHtml(t)}</span>`).join('')}</div>` : ''}
+      </div>
+      <div class="post-body">
+        <div class="post-excerpt">${escHtml(firstPara)}</div>
+        ${hasMore ? `
+        <div class="post-full-text" id="full-${p.id}">
+          ${rest.map(par => `<p>${escHtml(par)}</p>`).join('')}
+        </div>
+        <button class="read-more-btn" id="rmb-${p.id}" onclick="toggleRead('${p.id}')">
+          Continue Reading <span class="arrow">›</span>
+        </button>` : ''}
+      </div>
+      <div class="post-footer">
+        <div class="reaction-bar">
+          <button class="reaction-btn ${userR==='like'?'liked':''}" onclick="react('${p.id}','like')">
+            <span class="emoji">👍</span> <span id="likes-${p.id}">${r.likes}</span>
+          </button>
+          <button class="reaction-btn ${userR==='dislike'?'disliked':''}" onclick="react('${p.id}','dislike')">
+            <span class="emoji">👎</span> <span id="dislikes-${p.id}">${r.dislikes}</span>
+          </button>
+        </div>
+        <button class="comment-toggle-btn" onclick="toggleComments('${p.id}')">
+          💬 ${cmts.length} Comment${cmts.length!==1?'s':''}
+        </button>
+      </div>
+      <div class="comments-section" id="comments-${p.id}">
+        <div class="comments-title">💬 Comments (${cmts.length})</div>
+        <div id="cmts-list-${p.id}">
+          ${cmts.length ? cmts.map(c => renderComment(c)).join('') : '<p style="font-style:italic;color:var(--muted);font-size:14px;margin-bottom:16px">Be the first to share your thoughts…</p>'}
+        </div>
+        <div class="comment-form">
+          <div class="comment-form-title">Leave a Comment</div>
+          <div class="form-row">
+            <input type="text" class="form-input" id="cn-${p.id}" placeholder="Your name *" />
+            <input type="email" class="form-input" id="ce-${p.id}" placeholder="Email (optional)" />
+          </div>
+          <textarea class="form-textarea" id="ct-${p.id}" placeholder="Share your thoughts…"></textarea>
+          <button class="btn btn-primary btn-sm" onclick="submitComment('${p.id}')">Post Comment</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+
+  renderSidebar(sorted);
+  renderTagCloud(sorted);
+}
+
+function renderComment(c) {
+  return `
+  <div class="comment-item">
+    <div class="comment-avatar">${c.name.charAt(0).toUpperCase()}</div>
+    <div class="comment-content">
+      <div class="comment-header">
+        <span class="comment-name">${escHtml(c.name)}</span>
+        <span class="comment-date-sm">${fmtDate(c.date)}</span>
+      </div>
+      <div class="comment-text">${escHtml(c.text)}</div>
+    </div>
+  </div>`;
+}
+
+function renderSidebar(posts) {
+  const el = document.getElementById('recent-posts-sidebar');
+  if (!el) return;
+  const top5 = posts.slice(0,5);
+  el.innerHTML = top5.map((p,i) => `
+    <div class="recent-post-item" onclick="scrollToPost('${p.id}')">
+      <div class="recent-post-num">${String(i+1).padStart(2,'0')}</div>
+      <div class="recent-post-info">
+        <div class="recent-post-title">${escHtml(p.title)}</div>
+        <div class="recent-post-date">${fmtDate(p.date)}</div>
+      </div>
+    </div>`).join('');
+}
+
+function renderTagCloud(posts) {
+  const el = document.getElementById('tags-cloud');
+  if (!el) return;
+  const all = {};
+  posts.forEach(p => (p.tags||[]).forEach(t => { all[t] = (all[t]||0)+1; }));
+  el.innerHTML = Object.entries(all).sort((a,b)=>b[1]-a[1]).map(([t,c])=>
+    `<span class="tag-cloud-item">${escHtml(t)} (${c})</span>`).join('');
+}
+
+function scrollToPost(id) {
+  const el = document.getElementById(`card-${id}`);
+  if (el) el.scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+function toggleRead(id) {
+  const full = document.getElementById(`full-${id}`);
+  const btn = document.getElementById(`rmb-${id}`);
+  full.classList.toggle('open');
+  btn.classList.toggle('open');
+  btn.innerHTML = full.classList.contains('open')
+    ? 'Show Less <span class="arrow">›</span>'
+    : 'Continue Reading <span class="arrow">›</span>';
+}
+
+function toggleComments(id) {
+  const el = document.getElementById(`comments-${id}`);
+  el.classList.toggle('open');
+}
+
+// ═══════════════════════════════════════
+//  REACTIONS
+// ═══════════════════════════════════════
+const USER_REACTIONS_KEY = 'cm_user_reactions';
+function getUserReactions() { return JSON.parse(localStorage.getItem(USER_REACTIONS_KEY)||'{}'); }
+function getUserReaction(pid) { return getUserReactions()[pid]; }
+
+function react(pid, type) {
+  const reactions = getReactions();
+  const userReactions = getUserReactions();
+  const r = reactions[pid] || { likes:0, dislikes:0 };
+  const current = userReactions[pid];
+
+  if (current === type) {
+    // undo
+    r[type + 's']--;
+    delete userReactions[pid];
+  } else {
+    if (current) r[current + 's'] = Math.max(0, r[current + 's'] - 1);
+    r[type + 's']++;
+    userReactions[pid] = type;
+  }
+
+  reactions[pid] = r;
+  saveReactions(reactions);
+  localStorage.setItem(USER_REACTIONS_KEY, JSON.stringify(userReactions));
+
+  document.getElementById(`likes-${pid}`).textContent = r.likes;
+  document.getElementById(`dislikes-${pid}`).textContent = r.dislikes;
+
+  // update button states
+  const card = document.getElementById(`card-${pid}`);
+  const btns = card.querySelectorAll('.reaction-btn');
+  btns[0].className = 'reaction-btn' + (userReactions[pid]==='like' ? ' liked' : '');
+  btns[1].className = 'reaction-btn' + (userReactions[pid]==='dislike' ? ' disliked' : '');
+}
+
+// ═══════════════════════════════════════
+//  COMMENTS
+// ═══════════════════════════════════════
+function submitComment(pid) {
+  const name = document.getElementById(`cn-${pid}`).value.trim();
+  const text = document.getElementById(`ct-${pid}`).value.trim();
+  if (!name) { showToast('Please enter your name', '⚠'); return; }
+  if (!text) { showToast('Please write a comment', '⚠'); return; }
+
+  const comments = getComments();
+  if (!comments[pid]) comments[pid] = [];
+  const c = { id: genId(), name, text, date: new Date().toISOString().slice(0,10) };
+  comments[pid].unshift(c);
+  saveComments(comments);
+
+  // Update UI
+  const list = document.getElementById(`cmts-list-${pid}`);
+  list.innerHTML = comments[pid].map(renderComment).join('');
+
+  // Update title + toggle btn
+  const section = document.getElementById(`comments-${pid}`);
+  section.querySelector('.comments-title').textContent = `💬 Comments (${comments[pid].length})`;
+  const card = document.getElementById(`card-${pid}`);
+  card.querySelector('.comment-toggle-btn').textContent = `💬 ${comments[pid].length} Comment${comments[pid].length!==1?'s':''}`;
+
+  document.getElementById(`cn-${pid}`).value = '';
+  document.getElementById(`ct-${pid}`).value = '';
+  showToast('Comment posted!', '💬');
+}
+
+// ═══════════════════════════════════════
+//  LOGIN
+// ═══════════════════════════════════════
+function openLogin() {
+  document.getElementById('login-modal').classList.add('open');
+  setTimeout(() => document.getElementById('login-user').focus(), 100);
+}
+function closeLogin() {
+  document.getElementById('login-modal').classList.remove('open');
+  document.getElementById('login-error').classList.remove('show');
+  document.getElementById('login-user').value = '';
+  document.getElementById('login-pass').value = '';
+}
+
+function doLogin() {
+  const u = document.getElementById('login-user').value.trim();
+  const p = document.getElementById('login-pass').value;
+  if (u === ADMIN_USER && p === getAdminPass()) {
+    closeLogin();
+    openAdmin();
+  } else {
+    document.getElementById('login-error').classList.add('show');
+    document.getElementById('login-pass').value = '';
+  }
+}
+
+function adminLogout() {
+  document.getElementById('admin-dashboard').classList.remove('open');
+  renderFrontend();
+  showToast('Logged out successfully', '👋');
+}
+
+// ═══════════════════════════════════════
+//  ADMIN DASHBOARD
+// ═══════════════════════════════════════
+function openAdmin() {
+  document.getElementById('admin-dashboard').classList.add('open');
+  renderAdminDashboard();
+}
+
+function adminTab(tab, el) {
+  document.querySelectorAll('.admin-nav-item').forEach(i => i.classList.remove('active'));
+  el.classList.add('active');
+  if (tab === 'dashboard') renderAdminDashboard();
+  else if (tab === 'posts') renderAdminPosts();
+  else if (tab === 'new-post') renderAdminNewPost();
+  else if (tab === 'settings') renderAdminSettings();
+}
+
+function renderAdminDashboard() {
+  const posts = getPosts();
+  const reactions = getReactions();
+  const comments = getComments();
+  let totalLikes = 0, totalDislikes = 0, totalComments = 0;
+  posts.forEach(p => {
+    const r = reactions[p.id] || { likes:0, dislikes:0 };
+    totalLikes += r.likes; totalDislikes += r.dislikes;
+    totalComments += (comments[p.id]||[]).length;
+  });
+
+  document.getElementById('admin-content').innerHTML = `
+    <div class="admin-page-title">Dashboard</div>
+    <div class="admin-page-subtitle">Welcome back, Collins Mambo</div>
+    <div class="admin-stats">
+      <div class="stat-card">
+        <div class="stat-num">${posts.length}</div>
+        <div class="stat-label">Total Posts</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">${totalComments}</div>
+        <div class="stat-label">Comments</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">${totalLikes}</div>
+        <div class="stat-label">👍 Likes</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">${totalDislikes}</div>
+        <div class="stat-label">👎 Dislikes</div>
+      </div>
+    </div>
+    <div class="admin-table-wrap">
+      <div class="admin-table-header">
+        <div class="admin-table-title">Recent Posts</div>
+        <button class="btn btn-gold btn-sm" onclick="adminTab('new-post', document.querySelectorAll('.admin-nav-item')[2])">+ New Post</button>
+      </div>
+      <div class="table-scroll"><table>
+        <thead><tr>
+          <th>Title</th><th>Date</th><th>Likes</th><th>Comments</th><th>Actions</th>
+        </tr></thead>
+        <tbody>
+          ${[...posts].sort((a,b)=>new Date(b.date)-new Date(a.date)).slice(0,5).map(p => {
+            const r = reactions[p.id]||{likes:0,dislikes:0};
+            const cc = (comments[p.id]||[]).length;
+            return `<tr>
+              <td class="td-title"><span class="td-title-text" title="${escHtml(p.title)}">${escHtml(p.title)}</span></td>
+              <td>${fmtDate(p.date)}</td>
+              <td>👍 ${r.likes} / 👎 ${r.dislikes}</td>
+              <td>💬 ${cc}</td>
+              <td style="display:flex;gap:8px">
+                <button class="btn btn-sm" onclick="editPost('${p.id}')">Edit</button>
+                <button class="btn btn-sm btn-danger" onclick="deletePost('${p.id}')">Delete</button>
+              </td>
+            </tr>`;
+          }).join('')}
+        </tbody>
+      </table></div>
+    </div>`;
+}
+
+function renderAdminPosts() {
+  const posts = getPosts();
+  const reactions = getReactions();
+  const comments = getComments();
+
+  document.getElementById('admin-content').innerHTML = `
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+      <div class="admin-page-title">All Posts</div>
+      <button class="btn btn-gold" onclick="adminTab('new-post', document.querySelectorAll('.admin-nav-item')[2])">+ New Post</button>
+    </div>
+    <div class="admin-page-subtitle">${posts.length} posts published</div>
+    <div class="admin-table-wrap">
+      <div class="table-scroll"><table>
+        <thead><tr>
+          <th>#</th><th>Title</th><th>Date</th><th>Tags</th><th>Likes</th><th>Cmts</th><th>Actions</th>
+        </tr></thead>
+        <tbody>
+          ${posts.length ? [...posts].sort((a,b)=>new Date(b.date)-new Date(a.date)).map((p,i) => {
+            const r = reactions[p.id]||{likes:0,dislikes:0};
+            const cc = (comments[p.id]||[]).length;
+            return `<tr>
+              <td style="color:var(--muted);font-family:'Jost',sans-serif;font-size:11px">${i+1}</td>
+              <td class="td-title"><span class="td-title-text" title="${escHtml(p.title)}">${escHtml(p.title)}</span></td>
+              <td style="white-space:nowrap">${fmtDate(p.date)}</td>
+              <td><div style="display:flex;gap:4px;flex-wrap:wrap">${(p.tags||[]).slice(0,3).map(t=>`<span class="tag" style="font-size:9px">${escHtml(t)}</span>`).join('')}</div></td>
+              <td>👍${r.likes} 👎${r.dislikes}</td>
+              <td>💬${cc}</td>
+              <td style="display:flex;gap:6px">
+                <button class="btn btn-sm" onclick="editPost('${p.id}')">Edit</button>
+                <button class="btn btn-sm btn-danger" onclick="deletePost('${p.id}')">Del</button>
+              </td>
+            </tr>`;
+          }).join('') : '<tr><td colspan="7" style="text-align:center;padding:40px;color:var(--muted);font-style:italic">No posts yet.</td></tr>'}
+        </tbody>
+      </table></div>
+    </div>`;
+}
+
+let editingPostId = null;
+
+function renderAdminNewPost(post) {
+  editingPostId = post ? post.id : null;
+  document.getElementById('admin-content').innerHTML = `
+    <div class="admin-page-title">${post ? 'Edit Post' : 'New Post'}</div>
+    <div class="admin-page-subtitle">${post ? 'Update your reflection' : 'Share a new reflection with your readers'}</div>
+    <div style="background:white;border:1px solid var(--border-light);border-radius:4px;padding:36px;box-shadow:0 2px 8px var(--shadow)">
+      <div class="form-group">
+        <label class="form-label">Post Title *</label>
+        <input type="text" class="form-control" id="adm-title" value="${post ? escHtml(post.title) : ''}" placeholder="Enter a reflective title…" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Date</label>
+        <input type="date" class="form-control" id="adm-date" value="${post ? post.date : new Date().toISOString().slice(0,10)}" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Tags (comma separated)</label>
+        <input type="text" class="form-control" id="adm-tags" value="${post ? (post.tags||[]).join(', ') : ''}" placeholder="faith, jesus, bible…" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Content * (separate paragraphs with blank lines)</label>
+        <textarea class="form-control" id="adm-content" style="min-height:360px;font-size:14px" placeholder="Write your reflection here…">${post ? escHtml(post.content) : ''}</textarea>
+      </div>
+      <div style="display:flex;gap:12px">
+        <button class="btn btn-gold" style="padding:12px 32px" onclick="adminSavePost()">
+          ${post ? '✓ Update Post' : '✓ Publish Post'}
+        </button>
+        <button class="btn" onclick="adminTab('posts', document.querySelectorAll('.admin-nav-item')[1])">Cancel</button>
+      </div>
+    </div>`;
+}
+
+function adminSavePost() {
+  const title = document.getElementById('adm-title').value.trim();
+  const content = document.getElementById('adm-content').value.trim();
+  const date = document.getElementById('adm-date').value;
+  const tagsRaw = document.getElementById('adm-tags').value;
+  const tags = tagsRaw.split(',').map(t=>t.trim()).filter(Boolean);
+
+  if (!title || !content) { showToast('Title and content are required', '⚠'); return; }
+
+  const posts = getPosts();
+  if (editingPostId) {
+    const idx = posts.findIndex(p => p.id === editingPostId);
+    if (idx !== -1) { posts[idx] = { ...posts[idx], title, content, date, tags }; }
+  } else {
+    posts.unshift({ id: genId(), title, content, date, tags });
+  }
+  savePosts(posts);
+  showToast(editingPostId ? 'Post updated!' : 'Post published!', '✓');
+  adminTab('posts', document.querySelectorAll('.admin-nav-item')[1]);
+}
+
+function editPost(id) {
+  const post = getPosts().find(p => p.id === id);
+  if (!post) return;
+  document.querySelectorAll('.admin-nav-item').forEach(i => i.classList.remove('active'));
+  document.querySelectorAll('.admin-nav-item')[2].classList.add('active');
+  renderAdminNewPost(post);
+}
+
+function deletePost(id) {
+  if (!confirm('Delete this post? This cannot be undone.')) return;
+  const posts = getPosts().filter(p => p.id !== id);
+  savePosts(posts);
+  showToast('Post deleted', '🗑');
+  renderAdminPosts();
+}
+
+function renderAdminSettings() {
+  document.getElementById('admin-content').innerHTML = `
+    <div class="admin-page-title">Settings</div>
+    <div class="admin-page-subtitle">Manage your blog settings</div>
+    <div style="background:white;border:1px solid var(--border-light);border-radius:4px;padding:36px;max-width:480px;box-shadow:0 2px 8px var(--shadow)">
+      <div class="form-group">
+        <label class="form-label">Change Admin Password</label>
+        <input type="password" class="form-control" id="new-pass" placeholder="New password…" />
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control" id="confirm-pass" placeholder="Confirm new password…" />
+      </div>
+      <button class="btn btn-gold" onclick="changePassword()">Update Password</button>
+      <div style="margin-top:32px;padding-top:24px;border-top:1px solid var(--border-light)">
+        <div class="form-label" style="margin-bottom:10px">Danger Zone</div>
+        <button class="btn btn-danger" onclick="clearAllData()">Reset All Data</button>
+      </div>
+    </div>`;
+}
+
+function changePassword() {
+  const np = document.getElementById('new-pass').value;
+  const cp = document.getElementById('confirm-pass').value;
+  if (!np) { showToast('Enter a new password', '⚠'); return; }
+  if (np !== cp) { showToast('Passwords do not match', '⚠'); return; }
+  localStorage.setItem(ADMIN_PASS_KEY, np);
+  document.getElementById('new-pass').value = '';
+  document.getElementById('confirm-pass').value = '';
+  showToast('Password updated successfully', '🔐');
+}
+
+function clearAllData() {
+  if (!confirm('This will delete ALL posts, comments, and reactions. Are you absolutely sure?')) return;
+  localStorage.removeItem(POSTS_KEY);
+  localStorage.removeItem(REACTIONS_KEY);
+  localStorage.removeItem(COMMENTS_KEY);
+  localStorage.removeItem(USER_REACTIONS_KEY);
+  showToast('All data cleared', '🗑');
+  renderAdminDashboard();
+}
+
+// ═══════════════════════════════════════
+//  MISC
+// ═══════════════════════════════════════
+function openLogin() {
+  document.getElementById('login-modal').classList.add('open');
+  setTimeout(() => document.getElementById('login-user').focus(), 100);
+}
+function closeLogin() {
+  document.getElementById('login-modal').classList.remove('open');
+  document.getElementById('login-error').classList.remove('show');
+}
+function closePostModal() {
+  document.getElementById('post-modal').classList.remove('open');
+}
+
+function escHtml(str) {
+  if (!str) return '';
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// Close modals on overlay click
+document.getElementById('login-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeLogin();
+});
+document.getElementById('post-modal').addEventListener('click', function(e) {
+  if (e.target === this) closePostModal();
+});
+
+// ── INIT ──
+renderFrontend();
+</script>
+</body>
+</html>
